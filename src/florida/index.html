@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}TCC Florida | Congressional Map{% endblock %}
+{% block description %}Explore Florida's districts and take action with The Conservative Caucus.{% endblock %}
+
+{% block body %}
+<h1>Florida Congressional Districts</h1>
+<div class="map-container">
+  <!-- Embed your SVG/TopoJSON map or iframe -->
+  <iframe src="/maps/florida-map.html" width="100%" height="600" style="border:none;"></iframe>
+</div>
+
+<p style="text-align:center; margin-top:20px;">
+  <a href="/survey.html">Click here to take the Florida survey</a>
+</p>
+{% endblock %}

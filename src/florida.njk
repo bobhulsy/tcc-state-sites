@@ -1,0 +1,52 @@
+<!-- tccflorida.com starter site powered by Eleventy (Cloudflare Pages compatible) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TCC Florida | District Feedback</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>The Conservative Caucus – Florida</h1>
+    <nav>
+      <a href="/">Home</a> |
+      <a href="/florida/map/">Map</a> |
+      <a href="/florida/survey/">Survey</a>
+    </nav>
+    <hr>
+  </header>
+  <main>
+    <h2>Florida Congressional District Map</h2>
+    <div id="map" style="height: 600px; width: 100%; background: #f8fafc; border-radius: 12px;"></div>
+    <script src="/js/map.js"></script>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 The Conservative Caucus — Florida Division</p>
+  </footer>
+
+  <script>
+    // Placeholder data structure (to be replaced with real JSON from API or static file)
+    const reps = {
+      "FL-01": {
+        name: "Matt Gaetz",
+        party: "Republican",
+        photo: "/images/gaetz.jpg",
+        email: "https://gaetz.house.gov/contact",
+        phone: "tel:+12022254136",
+        website: "https://gaetz.house.gov",
+        rating: 9.5
+      }
+      // Additional districts...
+    };
+
+    // Sample D3 code or event listener would go here to:
+    // - Load GeoJSON
+    // - Render shapes
+    // - Bind tooltips on click to each district
+  </script>
+</body>
+</html>

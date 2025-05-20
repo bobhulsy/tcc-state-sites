@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Missouri Congressional District Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/src/css/styles.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <div id="map" style="width:100vw;height:100vh;"></div>
+  <script>
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const svg = d3.select("#map").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+    const projection = d3.geoAlbersUsa()
+      .fitSize([width, height], {type: "FeatureCollection", features: []});
+    const path = d3.geoPath().projection(projection);
+    d3.json("/data/mo.geojson").then(function(geojson) {
+      svg.append("g")
+        .selectAll("path")
+        .data(geojson.features)
+        .join("path")
+        .attr("d", path)
+        .attr("fill", "#4f8cff")
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 1.5)
+        .on("click", function(event, d) {
+          d3.selectAll('.map-tooltip').remove();
+          d3.selectAll('path').attr('fill', '#4f8cff');
+          d3.select(this).attr('fill', '#2b6cb0');
+          let tooltipHtml = `<strong>${d.properties.NAMELSAD || 'District'}</strong><br/>`;
+          tooltipHtml += `<div><strong>${d.properties.REP_NAME || 'Rep Name'}</strong><br/>`;
+          if (d.properties.PARTY) tooltipHtml += `${d.properties.PARTY}<br/>`;
+          if (d.properties.PHONE) tooltipHtml += `<button class='cta-btn' onclick="window.open('tel:${d.properties.PHONE}')">Call</button> <span>${d.properties.PHONE}</span><br/>`;
+          if (d.properties.EMAIL) tooltipHtml += `<button class='cta-btn' onclick="window.open('mailto:${d.properties.EMAIL}')">Email</button> <span>${d.properties.EMAIL}</span><br/>`;
+          if (d.properties.WEBSITE) tooltipHtml += `<button class='cta-btn' onclick="window.open('${d.properties.WEBSITE}', '_blank')">Visit Website</button><br/>`;
+          tooltipHtml += `<button class='cta-btn close-btn' style='float:right;margin-top:-8px;' onclick='this.parentNode.parentNode.remove()'>×</button>`;
+          tooltipHtml += `</div>`;
+          let tooltip = d3.select('body').append('div')
+            .attr('class', 'map-tooltip')
+            .style('position', 'absolute')
+            .style('background', '#fff')
+            .style('border', '1px solid #ccc')
+            .style('padding', '10px')
+            .style('border-radius', '12px')
+            .style('box-shadow', '0 4px 16px rgba(0,0,0,0.12)')
+            .style('pointer-events', 'auto')
+            .html(tooltipHtml)
+            .style('left', (event.pageX + 15) + 'px')
+            .style('top', (event.pageY - 20) + 'px');
+          setTimeout(() => {
+            document.addEventListener('mousedown', function handler(e) {
+              if (!tooltip.node().contains(e.target)) {
+                tooltip.remove();
+                d3.selectAll('path').attr('fill', '#4f8cff');
+                document.removeEventListener('mousedown', handler);
+              }
+            });
+          }, 0);
+        });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    // Replace this with real features from Florida's congressional district GeoJSON
+    // Example feature:
+    {
+      "type": "Feature",
+      "properties": {
+        "CD116FP": "01",
+        "NAMELSAD": "Congressional District 1",
+        "STATEFP": "12"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-87.634938, 30.396032],
+            [-87.634938, 30.997536],
+            [-86.411786, 30.997536],
+            [-86.411786, 30.396032],
+            [-87.634938, 30.396032]
+          ]
+        ]
+      }
+    }
+    // Add all districts here
+  ]
+}

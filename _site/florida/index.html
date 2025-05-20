@@ -1,0 +1,68 @@
+<!-- tccflorida.com starter site powered by Eleventy (Cloudflare Pages compatible) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TCC Florida | District Feedback</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>TCC Florida — Congressional District Survey</h1>
+  </header>
+
+  <main>
+    <section id="survey">
+      <h2>Tell Us About Your Rep</h2>
+      <!-- General Zoho Survey Embed -->
+      <iframe src="https://survey.zohopublic.com/zs/FdD9PM" frameborder='0' style='height:700px;width:100%;' marginwidth='0' marginheight='0' scrolling='auto' allow='geolocation'></iframe>
+      <p>If you have trouble viewing the survey, <a href="https://survey.zohopublic.com/zs/FdD9PM" target="_blank">click here to take the survey</a>.</p>
+    </section>
+
+    <section id="map">
+      <h2>Explore the Map</h2>
+      <div id="districtMap" style="height: 600px; background: #eee;">
+        <!-- D3.js will render congressional districts here -->
+      </div>
+    </section>
+
+    <section id="tooltip" style="display:none; position:absolute; background:white; border:1px solid #ccc; padding:10px; max-width:250px;">
+      <img id="repPhoto" src="" alt="Representative" width="100%">
+      <h3 id="repName">Rep. Name</h3>
+      <p id="repParty">Party: --</p>
+      <input type="range" min="1" max="10" value="5" id="approvalSlider">
+      <div id="sliderLabel">RINO</div>
+      <a id="emailRep" href="#" target="_blank">Email</a><br>
+      <a id="callRep" href="#" target="_blank">Call</a><br>
+      <a id="visitRep" href="#" target="_blank">Website</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 The Conservative Caucus — Florida Division</p>
+  </footer>
+
+  <script>
+    // Placeholder data structure (to be replaced with real JSON from API or static file)
+    const reps = {
+      "FL-01": {
+        name: "Matt Gaetz",
+        party: "Republican",
+        photo: "/images/gaetz.jpg",
+        email: "https://gaetz.house.gov/contact",
+        phone: "tel:+12022254136",
+        website: "https://gaetz.house.gov",
+        rating: 9.5
+      }
+      // Additional districts...
+    };
+
+    // Sample D3 code or event listener would go here to:
+    // - Load GeoJSON
+    // - Render shapes
+    // - Bind tooltips on click to each district
+  </script>
+</body>
+</html>
